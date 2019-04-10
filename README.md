@@ -5,7 +5,8 @@ Reference link: https://buddy.works/guides/how-dockerize-node-application
 
 How to Dockerize a Node.js application
 
-Install Node.js
+# Install Node.js
+
 If you’ve never worked with Node.js before, kick off with installing the npm manager: nodejs.org/en/download/package-manager
 
 Install NPM and Express Framework
@@ -13,28 +14,28 @@ In addition to npm, our application will use the Express Framework, one of the m
 
 $ mkdir helloworld 
 $ cd helloworld
-$ npm init 
+\$ npm init
 When asked for the details of the application (name, version, etc.), just confirm the default values with enter.
 
 Npm will create a package.json that will hold the dependencies of the app. Let’s add the Express Framework as the first dependency:
 
-$ npm install express --save
+\$ npm install express --save
 The file should look like this now:
 
 Js
 {
-  "name": "helloworld",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.15.2"
-  }
+"name": "helloworld",
+"version": "1.0.0",
+"description": "",
+"main": "index.js",
+"scripts": {
+"test": "echo \"Error: no test specified\" && exit 1"
+},
+"author": "",
+"license": "ISC",
+"dependencies": {
+"express": "^4.15.2"
+}
 }
 
 Details of Hello World
@@ -46,19 +47,18 @@ var app = express()
 
 //Define request response in root URL (/)
 app.get('/', function (req, res) {
-  res.send('Hello World!')
+res.send('Hello World!')
 })
 
 //Launch listening server on port 8081
 app.listen(8081, function () {
-  console.log('app listening on port 8081!')
+console.log('app listening on port 8081!')
 })
-
 
 Run the app
 The application is ready to launch:
 
-$ node index.js
+\$ node index.js
 Go to http://localhost:8081/ in your browser to view it.
 
 Part 2: Dockerizing Node.js application
@@ -99,14 +99,12 @@ COPY . /app
 CMD node index.js
 EXPOSE 8081
 
-
 Build Docker image
 With the instructions ready all that remains is to run the docker build command, set the name of our image with -t parameter, and choose the directory with the Dockerfile:
 
-$ docker build -t hello-world .
+\$ docker build -t hello-world .
 
 Run Docker container
 The application has been baked into the image. Dinner time! Execute the following string to launch the container and publish it on the host with the same port 8081:
 
 docker run -p 8081:8081 hello-world
-
